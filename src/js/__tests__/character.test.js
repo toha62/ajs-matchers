@@ -1,20 +1,25 @@
-import getHealth from '../character';
+import sortCharacter from '../character';
 
-test.each([
-  ['healthy', 120],
-  ['wounded', 50],
-  ['wounded', 30],
-  ['wounded', 15],
-  ['critical', 14],
-  ['critical', 1],
-])('should return %s for %i level health', (healthDescription, health) => {
-  const result = getHealth({ name: '', health });
+test('should sort characters array', () => {
+  const result = sortCharacter([
+    { name: 'мечник', health: 10 },
+    { name: 'маг', health: 95 },
+    { name: 'лучник', health: 80 },
+    { name: 'солдат', health: 10 },
+    { name: 'всадник', health: 70 },
+  ]);
 
-  expect(result).toBe(healthDescription);
+  expect(result).toEqual([
+    { name: 'маг', health: 95 },
+    { name: 'лучник', health: 80 },
+    { name: 'всадник', health: 70 },
+    { name: 'мечник', health: 10 },
+    { name: 'солдат', health: 10 },
+  ]);
 });
 
 test('should return null without args', () => {
-  const result = getHealth();
+  const result = sortCharacter();
 
   expect(result).toBeNull();
 });

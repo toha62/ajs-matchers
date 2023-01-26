@@ -4,10 +4,10 @@ export default function sortCharacter(characterArray) {
   }
   return characterArray.sort((a, b) => {
     if (a.health > b.health) {
-      return 1;
+      return -1;
     }
     if (a.health < b.health) {
-      return -1;
+      return 1;
     }
     return 0;
   });
